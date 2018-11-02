@@ -1,0 +1,139 @@
+*{
+    font-family: Arial;
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+body{
+    width: 80%;
+    margin: 8em auto;
+}
+li, input{
+    text-align: center;
+}
+input, label, button, .studentContent p{
+    padding: 20px;
+    font-size: 26px;
+    text-align: center;
+}
+input[type="submit"], button, .studentContent p{
+    width: 200px;
+    background-color: #e30613;
+    border: none;
+    color: #ffffff;
+}
+.labels, .inputs{
+    display: flex;
+    flex-direction: column;
+}
+.labels label, .inputs input{
+    margin-bottom: 1em;
+}
+.fields{
+    display: flex;
+    justify-content: space-around;
+}
+#login, #register{
+    float: right;
+    margin-right: 6em;
+}
+.register button, .studentLogin button{
+    margin-left: 6em
+}
+/*---------------------------------- Main screen ----------------------------------*/
+.content{
+    display: flex;
+    justify-content: space-around;
+}
+.content h1{
+    text-align: center;
+    background-color: #e30613;
+    color: white;
+    margin: 0;
+    padding: 8px;
+    width: 328px;
+}
+.student:hover ul, .docent:hover ul{
+    display: flex;
+}
+.student li:hover, .docent li:hover{
+    background-color: #e30613;
+}
+.student ul, .docent ul{
+    display: none;
+    padding: 0;
+    margin: 0;
+}
+.student ul a{
+    width: 50%;
+}
+.student li, .docent li{
+    list-style-type: none;
+    background-color: black;
+    color: #ffffff;
+    border: none;
+    padding: 10px 0;
+    font-size: 24px;
+}
+.docent a{
+    width: 100%;
+}
+
+/*---------------------------------- Login Studenten ----------------------------------*/
+.studentLogin label{
+    background-color: #e30613;
+    color: white;
+}
+.studentLogin label, .studentLogin input{
+    padding: 20px;
+    font-size: 26px;
+}
+.feedback{
+    text-align: center;
+}
+/*---------------------------------- Register Studenten ----------------------------------*/
+.register h1{
+    text-align: center;
+    background-color: #e30613;
+    color: white;
+    margin: 0 auto 2em auto;
+    padding: 10px;
+    width: 328px;
+}
+.register label{
+    background-color: #e30613;
+    color: white;
+}
+.groupNumber{
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+.groupNumber input{
+    width: 50px;
+    margin-left: 10px;
+}
+/*---------------------------------- Studenten Panel ----------------------------------*/
+.studentContent{
+    border: 2px solid black;
+    display: flex;
+}
+.studentContent .navigation{
+    display: flex;
+    flex-direction: column;
+}
+.studentContent .navigation p{
+    width: 160px;
+}
+.studentContent .navigation span{
+    font-style: italic;
+}
+.studentContent .navigation p, .studentContent .navigation button{
+    margin-bottom: 10px;
+}
+.studentContent #logout{
+    margin: 0;
+}
