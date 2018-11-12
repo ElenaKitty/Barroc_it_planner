@@ -21,14 +21,19 @@ class loginController extends Controller
         $sth->bindParam(':groupnumber', $groupnumber);
         $sth->execute();
         $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
-        if(password_verify($_POST['password'], $result[0]['password']))
+        if($result == null)
+        {
+            $_SESSION['feedback'] = "Groep nog niet geregistreerd";
+            return redirect('loginStudent');
+        }
+        else if(password_verify($_POST['password'], $result[0]['password']))
         {
             $_SESSION['feedback'] = "";
             return redirect('/student');
         }
-        else{
-            echo"test";
-            $_SESSION['feedback'] = "incorrect password";
+        else
+        {
+            $_SESSION['feedback'] = "incorrect wachtwoord";
             return redirect('/loginStudent');
         }
         //var_dump($sth->fetchAll(\PDO::FETCH_ASSOC));

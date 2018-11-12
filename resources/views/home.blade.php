@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="{{ URL::asset('css/style.css') }}">
 </head>
 <body>
+<?php 
+    session_start();
+    $_SESSION['feedback'] = "";
+?>
     <div class="content">
         <div class="student">
             <h1>Student</h1>
