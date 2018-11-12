@@ -9,7 +9,7 @@ class registerController extends Controller
     public function register()
     {
         session_start();
-        $exists;
+        $exists = false;
 
         $dbh = new \PDO('mysql:host=localhost;dbname=planner_barroc', 'root', '');
         $dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);

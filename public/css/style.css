@@ -7,9 +7,9 @@ a{
     text-decoration: none;
     color: black;
 }
-body{
+.container{
     width: 80%;
-    margin: 8em auto;
+    margin: 2rem auto;
 }
 li, input{
     text-align: center;
@@ -42,6 +42,29 @@ input[type="submit"], button, .studentContent p{
 }
 .register button, .studentLogin button{
     margin-left: 6em
+}
+header{
+    background-color: #dc3545;
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    color: white;
+    font-weight: 400;
+}
+header span{
+    font-weight: bold;
+}
+footer{
+    padding: 0.5rem 0 0.5rem 1rem;
+    font-size: 1.25rem;
+    color: white;
+    font-weight: 400;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 98.95%;
+    overflow: hidden;
+    min-height: 5%;
+    background-color: #dc3545;
 }
 /*---------------------------------- Main screen ----------------------------------*/
 .content{
@@ -128,4 +151,29 @@ input[type="submit"], button, .studentContent p{
 }
 .studentContent #logout{
     margin: 0;
+}
+/*----------------------------------Mail Panels----------------------------------*/
+.mailPanel{
+    display: flex;
+    border: 2px solid #dc3545;
+}
+.mails{
+    display: flex;
+    flex-direction: column;
+    border-right: 2px solid #dc3545;
+    padding-right: .3rem;
+}
+.mails button{
+    margin: .3rem;
+}
+.currentMail{
+    height: 70%;
+    width: 82%;
+}
+.mailInfo{
+    padding: 1rem;
+    border-bottom: 2px solid #dc3545;
+}
+.mailContent{
+
 }

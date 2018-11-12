@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 //haal SSL error(60) weg
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -32,7 +33,9 @@ Route::get('/docent', function(){
 Route::get('/student', function(){
     return view('/student/student');
 });
-
+Route::get('/studentMail', function(){
+    return view('/mail');
+});
 
 //login en register voor studenten
 Route::get('/loginStudent', function(){
@@ -46,7 +49,7 @@ Route::get('/register', function(){
 Route::get('/', function() {
     return view('home');
 });
-Route::get('/home', function() {
+Route::get('/home', function(){
     return view('home');
 });
 
