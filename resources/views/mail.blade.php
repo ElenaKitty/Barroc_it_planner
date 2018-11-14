@@ -5,24 +5,7 @@
     session_start();
     $_SESSION['user'] = "student";
 ?>
-<script>
-function toggleDisplay($department, $department1)
-{
-    var x = document.getElementById($department);
-    var y = document.getElementById($department1);
-    if (x.style.display == "block" && y.style.display == "block")
-    {
-        x.style.display = "none";
-        y.style.display = "none";
-    }
-    else 
-    {
-        x.style.display = "block";
-        y.style.display = "block";
-    }
-}
-</script>
-
+<script src="{{ URL::asset('js/mail.js') }}"></script>
 <div class="mailPanel">
     <div class="mails">
         <?php 
@@ -31,7 +14,14 @@ function toggleDisplay($department, $department1)
             {
                 $department = $mail['department'];
                 $department1 = $mail['department'] . "1";
-                echo "<button onClick='toggleDisplay(`$department`, `$department1`)'>" . $mail['department'] . "</button> \r\n";
+                if($department == "Finances")
+                    echo "<button onClick='toggleFinances(`$department`, `$department1`)'>" . $mail['department'] . "</button> \r\n";
+                if($department == "Sales")
+                    echo "<button onClick='toggleSales(`$department`, `$department1`)'>" . $mail['department'] . "</button> \r\n";
+                if($department == "Development")
+                    echo "<button onClick='toggleDevelopment(`$department`, `$department1`)'>" . $mail['department'] . "</button> \r\n";
+                if($department == "Manager")
+                    echo "<button onClick='toggleManager(`$department`, `$department1`)'>" . $mail['department'] . "</button> \r\n";
             }
         ?>
     </div>
