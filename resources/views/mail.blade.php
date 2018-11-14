@@ -10,17 +10,15 @@ function toggleDisplay($department, $department1)
 {
     var x = document.getElementById($department);
     var y = document.getElementById($department1);
-    console.log(y);
-    console.log(x);
-    if (x.style.display == "none" && y.style.display == "none")
-    {
-        x.style.display = "block";
-        y.style.display = "block";
-    }
-    else 
+    if (x.style.display == "block" && y.style.display == "block")
     {
         x.style.display = "none";
         y.style.display = "none";
+    }
+    else 
+    {
+        x.style.display = "block";
+        y.style.display = "block";
     }
 }
 </script>
