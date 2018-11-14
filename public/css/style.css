@@ -175,5 +175,17 @@ footer{
     border-bottom: 2px solid #dc3545;
 }
 .mailContent{
-
+    padding: 1rem;
+}
+#Finances, #Finances1{
+    display: none;
+}
+#Sales, #Sales1{
+    display: none;
+}
+#Development, #Development1{
+    display: none;
+}
+#Manager, #Manager1{
+    display: none;
 }
