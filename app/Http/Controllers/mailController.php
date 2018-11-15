@@ -60,12 +60,12 @@ class mailController extends Controller
     }
     public static function getMails()
     {
-        $groupNumber = 1;
+        $groupNumber = $_SESSION['user'];
         $dbh = new \PDO('mysql:host=localhost;dbname=planner_barroc', 'root', '');
         $dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         $dbh->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 
-        if($_SESSION['user'] == "student")
+        if($_SESSION['user'] >= 1)
         {
             $sth = $dbh->prepare("SELECT * from `mails` where mailResponse IS NOT null && groupNumber = :groupNumber");
             $sth->bindParam(":groupNumber", $groupNumber);

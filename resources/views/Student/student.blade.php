@@ -2,7 +2,6 @@
     include_once("header.php");
     use \App\Http\Controllers\mailController;
     session_start();
-    $_SESSION['user'] = "student";
 ?>
 <title>Studenten panel</title>
 <div class="studentContent">
@@ -22,7 +21,7 @@
     </div>
     <div class="studentPlanning">
         <div class="welcome">
-            <h1>Hallo Student</h1>
+            <h1>Hallo <?php echo "Groep: " . $_SESSION['user'];?></h1>
         </div>
         <div class="planning">
             <p class="eightHr">8hr</p>

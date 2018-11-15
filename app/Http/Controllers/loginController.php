@@ -29,6 +29,7 @@ class loginController extends Controller
         else if(password_verify($_POST['password'], $result[0]['password']))
         {
             $_SESSION['feedback'] = "";
+            $_SESSION['user'] = $groupnumber;
             return redirect('/student');
         }
         else
