@@ -182,28 +182,59 @@ footer{
 .studentContent .planning .eightHr, .studentContent .planning .nineHr, .studentContent .planning .tenHr, .studentContent .planning .elevenHr, .studentContent .planning .twelveHr{
     grid-column: 1;
 }
-.studentContent .planning .salesButton, .studentContent .planning .financeButton, .studentContent .planning .developmentButton, .studentContent .planning .managerButton{
+.studentContent .planning .SalesButton, .studentContent .planning .FinancesButton, .studentContent .planning .DevelopmentButton, .studentContent .planning .ManagerButton{
     padding: 0.5rem;
     margin-top: 0.5rem;
     height: 80%;
     width: 80%;
 }
-.studentContent .planning .salesButton{
+.studentContent .planning .SalesButton{
     grid-column: 3;
     grid-row: 3;
 }
-.studentContent .planning .financeButton{
+.studentContent .planning .FinancesButton{
     grid-column: 4;
     grid-row: 2;
 }
-.studentContent .planning .developmentButton{
+.studentContent .planning .DevelopmentButton{
     grid-column: 2;
     grid-row: 5;
 }
-.studentContent .planning .managerButton{
+.studentContent .planning .ManagerButton{
     grid-column: 3;
     grid-row: 1;
 }
+
+.SalesModal, .DevelopmentModal, .ManagerModal, .FinancesModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+.modalContent {
+    background-color: #e30613;
+    margin: 15rem auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%;
+}
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 /*----------------------------------Mail Panels----------------------------------*/
 .mailPanel{
     display: flex;
@@ -214,7 +245,7 @@ footer{
     flex-direction: column;
     border-right: 2px solid #dc3545;
     padding-right: .3rem;
-    min-width: 20%;
+    min-width: 17%;
 }
 .mails button{
     margin: .3rem;
@@ -230,7 +261,7 @@ footer{
 .mailContent{
     padding: 1rem;
 }
-#Finances, #Finances1{
+#Financess, #Financess1{
     display: none;
 }
 #Sales, #Sales1{

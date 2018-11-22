@@ -18,7 +18,7 @@ class mailController extends Controller
         $sth->bindParam(":groupNumber", $groupnumber);
         $sth->bindParam(":department", $department);
         $sth->bindParam(":mailSend", $mailSend);
-        $sth->bindParam("timeSend", date());
+        $sth->bindParam("timeSend", date("d-m-y H:i:s"));
         $sth->execute();
     }
 
@@ -31,7 +31,7 @@ class mailController extends Controller
 
         $sth = $dbh->prepare("UPDATE `mails` SET `mailResponse` = :mailResponse, `timeResponse` = :timeResponse");
         $sth->bindParam(":mailresponse", $mailResponse);
-        $sth->bindParam(":timeResposne", date());
+        $sth->bindParam(":timeResposne", date("d-m-y H:i:s"));
         $sth->execute();
     }
     public static function getMail($groupNumber, $department)
