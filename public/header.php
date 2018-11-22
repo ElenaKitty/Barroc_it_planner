@@ -11,4 +11,9 @@
     <header>
         <span>Barroc_IT</span> planner
     </header>
-    <div class="container">
+    <?php 
+    $url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+    if(strpos($url, "Mail") !== false)
+        echo "<div class='mailContainer'>";
+    else
+        echo "<div class='container'>";

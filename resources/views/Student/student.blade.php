@@ -33,58 +33,78 @@
             <p class="tenHr">10hr</p>
             <p class="elevenHr">11hr</p>
             <p class="twelveHr">12hr</p>
-            <?php             
-             if(isset($meetings[0]))
-             {
-                $department = $meetings[0]['department'];
-                echo "<button class='" . $department . "Button' onClick=showMeeting('$department')> $department</button>";
-                $temp = explode(" ", $meetings[0]['time']);
-                $time = $temp[1];
-             }
-             if(isset($meetings[1]))
-             {
-                $department = $meetings[1]['department'];
-                echo "<button class='" . $department . "Button' onClick=showMeeting('$department')> $department</button>";
-             }
-             if(isset($meetings[2]))
-             {
-                $department = $meetings[2]['department'];
-                echo "<button class='" . $department . "Button' onClick=showMeeting('$department')> $department</button>";
-             }
-             if(isset($meetings[3]))
-             {
-                $department = $meetings[3]['department'];
-                echo "<button class='" . $department . "Button' onClick=showMeeting('$department')> $department</button>";
-             }
+            <?php
+            foreach($meetings as $meeting)
+            {
+                if(isset($meeting))
+                {
+                   $department = $meeting['department'];
+                   echo "<button class='" . $department . "Button' onClick=showMeeting('$department')> $department</button>";
+                   $temp = explode(" ", $meeting['time']);
+                   if($meeting['department'] == "Sales" || $meeting['department'] == "sales")
+                       $salesTime = $temp[1];
+                   else if($meeting['department'] == "Manager" || $meeting['department'] == "manager")
+                       $managerTime = $temp[1];
+                   else if($meeting['department'] == "Development" || $meeting['department'] == "development")
+                       $developmentTime = $temp[1];
+                   else if($meeting['department'] == "Finances" || $meeting['department'] == "finances")
+                       $financesTime = $temp[1];
+                }
+            }        
             ?>
         </div>
     </div>
     <div class="modals">
-        <div class="SalesModal" id="SalesModal">
-            <div class="modalContent">
-                <span class="close">&times;</span>
-                <p>Sales</p>
-                <p><?php echo $time?></p>
-            </div>
-        </div> 
-        <div class="ManagerModal" id="ManagerModal">
-            <div class="modalContent">
-                <span class="close">&times;</span>
-                <p>Manager</p>
-            </div>
-        </div>
-        <div class="DevelopmentModal" id="DevelopmentModal">
-            <div class="modalContent">
-                <span class="close">&times;</span>
-                <p>Development</p>
-            </div>
-        </div> 
-        <div class="FinancesModal" id="FinancesModal">
-            <div class="modalContent">
-                <span class="close">&times;</span>
-                <p>Financess</p>
-            </div>
-        </div>
+        <?php
+        foreach($meetings as $meeting)
+        {
+            if(isset($meeting))
+            {
+                $department = $meeting['department'];
+                $temp = explode(" ", $meeting['time']);
+                if($meeting['department'] == "Sales" || $meeting['department'] == "sales")
+                {
+                    echo "<div class='SalesModal' id='SalesModal'>";
+                        echo "<div class='modalContent'>";
+                            echo "<span id='salesClose'>&times;</span>";
+                            echo "<p>Sales</p>";
+                            if(isset($salesTime)) echo "<p>" . $salesTime . "</p>";
+                        echo "</div>";
+                    echo "</div>";
+                }
+                else if($meeting['department'] == "Manager" || $meeting['department'] == "manager")
+                {
+                    echo "<div class='ManagerModal' id='ManagerModal'>";
+                        echo "<div class='modalContent'>";
+                            echo "<span id='managerClose'>&times;</span>";
+                            echo "<p>Manager</p>";
+                            if(isset($managerTime)) echo "<p>" . $managerTime . "</p>";
+                        echo "</div>";
+                    echo "</div>";
+                }
+                else if($meeting['department'] == "Development" || $meeting['department'] == "development")
+                {
+                    echo "<div class='DevelopmentModal' id='DevelopmentModal'>";
+                        echo "<div class='modalContent'>";
+                            echo "<span id='developmentClose'>&times;</span>";
+                            echo "<p>Development</p>";
+                            if(isset($developmentTime)) echo "<p>" . $developmentTime . "</p>";
+                        echo "</div>";
+                    echo "</div>";
+                }
+                else if($meeting['department'] == "Finances" || $meeting['department'] == "finances")
+                {
+                    echo "<div class='FinancesModal' id='FinancesModal'>";
+                        echo "<div class='modalContent'>";
+                            echo "<span id='financesClose'>&times;</span>";
+                            echo "<p>Finances</p>";
+                            if(isset($financesTime)) echo "<p>" . $financesTime . "</p>";
+                        echo "</div>";
+                    echo "</div>";
+                }
+            }
+        }
+        ?>
     </div>
 
 </div>

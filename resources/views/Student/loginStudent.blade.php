@@ -3,7 +3,7 @@
 ?>
 <title>Studenten login</title>
 <div class="studentLogin">
-    <form action="/loggingIn" method="post">
+    <form action="/loggingIn" class="form" method="post">
         {{ csrf_field() }}
         <?php 
             session_start();

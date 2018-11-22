@@ -2,17 +2,16 @@ function showMeeting($department)
 {
     // Get the modal
     var modal = document.getElementById($department + "Modal");
-    console.log($department);
-    console.log(modal);
+    var className = document.getElementById($department + "Modal").getAttribute("class")
     // Get the <span> element that closes the modal
-    if(modal == "SalesModal" || modal == "salesModal")
-        var span = document.getElementsByClassName("close")[0];
-    else if(modal == "ManagerModal"  || modal == "managerModal")
-        var span = document.getElementsByClassName("close")[1];
-    else if(modal == "DevelopmentModal"  || modal == "developmentModal")
-        var span = document.getElementsByClassName("close")[2];
-    else if(modal == "FinancesModal"  || modal == "financesModal")
-        var span = document.getElementsByClassName("close")[3];
+    if(className == "SalesModal")
+        var span = document.getElementById("salesClose");
+    else if(className == "ManagerModal")
+        var span = document.getElementById("managerClose");
+    else if(className == "DevelopmentModal")
+        var span = document.getElementById("developmentClose");
+    else if(className == "FinancesModal" )
+        var span = document.getElementById("financesClose");
 
     modal.style.display = "block";
     // When the user clicks on <span> (x), close the modal

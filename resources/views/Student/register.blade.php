@@ -3,7 +3,7 @@
 ?>
 <title>Registreer groep</title>
 <div class="register">
-    <form action="/registering" method="post">
+    <form action="/registering" class="form" method="post">
         {{ csrf_field() }}
         <?php 
             session_start();
