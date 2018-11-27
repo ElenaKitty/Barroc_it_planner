@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,11 +23,13 @@ Route::get('/amoclient/ready', function(){
 	return redirect('/docent');
 });
 Route::get('/amoclient/logout', function(){
+    $_SESSION['user'] = null;
     return redirect('home');
 });
 
 //panels voor docenten en studenten
 Route::get('/docent', function(){
+    $_SESSION['user'] = "docent";
     return view('/docent/docent');
 });
 Route::get('/student', function(){
@@ -48,14 +50,16 @@ Route::get('/register', function(){
 //de home pagina
 Route::get('/', function() {
     return view('home');
-});
+})->name('home');
 Route::get('/home', function(){
     return view('home');
-});
+})->name('home');
 
 //Roep de register  of login method aan
 Route::post('/registering', 'registerController@register');
 Route::post('/loggingIn', 'loginController@login');
+
 Route::get('/logout', function(){
+    $_SESSION['user'] = null;
     return view('home');
 });

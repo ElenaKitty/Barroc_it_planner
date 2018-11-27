@@ -2,9 +2,14 @@
     include_once("header.php");
     use \App\Http\Controllers\mailController;
     use \App\Http\Controllers\planningController;
-    session_start();
     $meetings = planningController::getMeetings();
-    var_dump($meetings);
+    // var_dump($meetings);
+    if((!isset($_SESSION['user'])))
+    {
+        $_SESSION['feedback'] = "Je moet ingelogt zijn voor de studentenPanel pagina.";
+        header("Location: /home");
+        die();
+    }
 ?>
 <script src="{{ URL::asset('js/planner.js') }}"></script>
 <title>Studenten panel</title>

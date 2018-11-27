@@ -6,7 +6,6 @@
     <form action="/registering" class="form" method="post">
         {{ csrf_field() }}
         <?php 
-            session_start();
             if(isset($_SESSION['feedback']))
                 echo "<h1 class='feedback'>" . $_SESSION['feedback'] . "</h1>";
         ?>

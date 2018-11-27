@@ -8,7 +8,6 @@ class registerController extends Controller
 {
     public function register()
     {
-        session_start();
         $exists = false;
 
         $dbh = new \PDO('mysql:host=localhost;dbname=planner_barroc', 'root', '');

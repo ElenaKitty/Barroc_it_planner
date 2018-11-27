@@ -2,7 +2,6 @@
 <?php
     include_once('header.php');
     use \App\Http\Controllers\mailController;
-    session_start();
     $mails = mailController::getMails();
 ?>
 <script src="{{ URL::asset('js/mail.js') }}"></script>

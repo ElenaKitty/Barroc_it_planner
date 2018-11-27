@@ -1,7 +1,8 @@
 <?php 
     include_once("header.php");
-    session_start();
+    echo "<p class='feedback'>" .  $_SESSION['feedback'] . "</p>";
     $_SESSION['feedback'] = "";
+    // var_dump($_SESSION['user']);
 ?>
     <div class="content">
         <div class="student">

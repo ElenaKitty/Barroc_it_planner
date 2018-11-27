@@ -8,7 +8,6 @@ class loginController extends Controller
 {
     public function login()
     {
-        session_start();
         $dbh = new \PDO('mysql:host=localhost;dbname=planner_barroc', 'root', '');
         $dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         $dbh->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
