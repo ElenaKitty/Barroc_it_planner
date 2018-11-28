@@ -192,30 +192,34 @@ footer{
 .studentContent .planning .eightHr, .studentContent .planning .nineHr, .studentContent .planning .tenHr, .studentContent .planning .elevenHr, .studentContent .planning .twelveHr{
     grid-column: 1;
 }
-.studentContent .planning .SalesButton, .studentContent .planning .FinancesButton, .studentContent .planning .DevelopmentButton, .studentContent .planning .ManagerButton,
-.studentContent .planning .salesButton, .studentContent .planning .financesButton, .studentContent .planning .developmentButton, .studentContent .planning .managerButton{
+.studentContent .planning .eightHrButton, .studentContent .planning .nineHrButton,
+.studentContent .planning .tenHrButton, .studentContent .planning .elevenHrButton, .studentContent .planning .twelveHrButton{
     padding: 0.5rem;
     margin-top: 0.5rem;
     height: 80%;
     width: 80%;
 }
-.studentContent .planning .SalesButton, .studentContent .planning .salesButton{
-    grid-column: 3;
-    grid-row: 3;
+.studentContent .planning .eightHrButton{
+    grid-column: 2;
+    grid-row: 1;
 }
-.studentContent .planning .FinancesButton, .studentContent .planning .financesButton{
-    grid-column: 4;
+.studentContent .planning .nineHrButton{
+    grid-column: 2;
     grid-row: 2;
 }
-.studentContent .planning .DevelopmentButton, .studentContent .planning .developmentButton{
+.studentContent .planning .tenHrButton{
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.studentContent .planning .elevenHrButton{
+    grid-column: 2;
+    grid-row: 4;
+}
+.studentContent .planning .twelveHrButton{
     grid-column: 2;
     grid-row: 5;
 }
-.studentContent .planning .ManagerButton, .studentContent .planning .managerButton{
-    grid-column: 3;
-    grid-row: 1;
-}
-
 .SalesModal, .DevelopmentModal, .ManagerModal, .FinancesModal{
     display: none;
     position: fixed;
@@ -232,6 +236,11 @@ footer{
     padding: 20px;
     border: 1px solid #888;
     width: 20%;
+}
+.modalContent button{
+    width: 100%;
+    background-color: white;
+    color: black;
 }
 #salesClose, #managerClose, #financesClose, #developmentClose{
     color: #aaaaaa;
@@ -252,12 +261,12 @@ footer{
 }
 .mailPanel{
     display: flex;
-    border: 2px solid #dc3545;
+    
 }
 .mails{
     display: flex;
     flex-direction: column;
-    border-right: 2px solid #dc3545;
+    border: 2px solid #dc3545;
     padding-right: .3rem;
     min-width: 13%;
 }
@@ -267,10 +276,13 @@ footer{
 .currentMail{
     height: 70%;
     width: 82%;
+    border: 2px solid #dc3545;
+    border-left: 0;
 }
 .mailInfo{
     padding: 1rem;
     border-bottom: 2px solid #dc3545;
+    min-height: 11.5%;
 }
 .mailContent{
     padding: 1rem;

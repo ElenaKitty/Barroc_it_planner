@@ -43,17 +43,63 @@
             {
                 if(isset($meeting))
                 {
-                   $department = $meeting['department'];
-                   echo "<button class='" . $department . "Button' onClick=showMeeting('$department')> $department</button>";
-                   $temp = explode(" ", $meeting['time']);
-                   if($meeting['department'] == "Sales" || $meeting['department'] == "sales")
-                       $salesTime = $temp[1];
-                   else if($meeting['department'] == "Manager" || $meeting['department'] == "manager")
-                       $managerTime = $temp[1];
-                   else if($meeting['department'] == "Development" || $meeting['department'] == "development")
-                       $developmentTime = $temp[1];
-                   else if($meeting['department'] == "Finances" || $meeting['department'] == "finances")
-                       $financesTime = $temp[1];
+                    $department = $meeting['department'];
+                    $dateTime = $meeting['time'];
+                    $temp = explode(" ", $meeting['time']);
+                    $time = $temp[1];
+                    for($i = 8; $i<=12;$i++)
+                    {
+                        $endLimit = $i+1;
+                        //stel het beginuur in.
+                        if($i>=10)
+                            $meetingTime = $i . ":00:00";
+                        else
+                            $meetingTime = "0 " . $i . ":00:00";
+                        //stel het einduur in.
+                        if($i>=9)
+                            $meetingTime1 = $endLimit . ":00:00";
+                        else
+                            $meetingTime1 = "0" . $endLimit . ":00:00";
+                        //Check bij welke tijdzone de meeting hoort.
+                        if($time >= $meetingTime && $time <= $meetingTime1)
+                        {
+                                //als de meeting tussen 8 en 9 uur valt.
+                                if($i == 8)
+                                {
+                                    echo "<button class='eightHrButton' onClick=showMeeting('$department')> $department</button>";
+                                    $salesTime8Hr = $time;
+                                    break;
+                                }
+                                //als de meeting tussen 9 en 10 uur valt.
+                                else if($i == 9)
+                                {
+                                    echo "<button class='nineHrButton' onClick=showMeeting('$department')> $department</button>";
+                                    $salesTime9Hr = $time;
+                                    break;
+                                }
+                                //als de meeting tussen 10 en 11 uur valt.
+                                else if($i == 10)
+                                {
+                                    echo "<button class='tenHrButton' onClick=showMeeting('$department')> $department</button>";
+                                    $salesTime10Hr = $time;
+                                    break;
+                                }
+                                //als de meeting tussen 11 en 12 uur valt.
+                                else if($i == 11)
+                                {
+                                    echo "<button class='elevenHrButton' onClick=showMeeting('$department')> $department</button>";
+                                    $salesTime11Hr = $time;
+                                    break;
+                                }
+                                //als de meeting tussen 12 en 13 uur valt.
+                                else if($i == 12)
+                                {
+                                    echo "<button class='twelveHrButton' onClick=showMeeting('$department')> $department</button>";
+                                    $salesTime12Hr = $time;
+                                    break;
+                                }
+                            }
+                    }
                 }
             }        
             ?>
@@ -73,7 +119,12 @@
                         echo "<div class='modalContent'>";
                             echo "<span id='salesClose'>&times;</span>";
                             echo "<p>Sales</p>";
-                            if(isset($salesTime)) echo "<p>" . $salesTime . "</p>";
+                            if(isset($salesTime8Hr)) echo "<p>" . $salesTime8Hr . "</p>";
+                            else if(isset($salesTime9Hr)) echo "<p>" . $salesTime9Hr . "</p>";
+                            else if(isset($salesTime10Hr)) echo "<p>" . $salesTime10Hr . "</p>";
+                            else if(isset($salesTime11Hr)) echo "<p>" . $salesTime11Hr . "</p>";
+                            else if(isset($salesTime12Hr)) echo "<p>" . $salesTime12Hr . "</p>";
+                            echo "<button>Schedule meeting</button>";
                         echo "</div>";
                     echo "</div>";
                 }
@@ -84,6 +135,7 @@
                             echo "<span id='managerClose'>&times;</span>";
                             echo "<p>Manager</p>";
                             if(isset($managerTime)) echo "<p>" . $managerTime . "</p>";
+                            echo "<button>Schedule meeting</button>";
                         echo "</div>";
                     echo "</div>";
                 }
@@ -94,6 +146,7 @@
                             echo "<span id='developmentClose'>&times;</span>";
                             echo "<p>Development</p>";
                             if(isset($developmentTime)) echo "<p>" . $developmentTime . "</p>";
+                            echo "<button>Schedule meeting</button>";
                         echo "</div>";
                     echo "</div>";
                 }
@@ -104,6 +157,7 @@
                             echo "<span id='financesClose'>&times;</span>";
                             echo "<p>Finances</p>";
                             if(isset($financesTime)) echo "<p>" . $financesTime . "</p>";
+                            echo "<button>Schedule meeting</button>";
                         echo "</div>";
                     echo "</div>";
                 }
