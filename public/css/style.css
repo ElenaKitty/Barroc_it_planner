@@ -221,9 +221,9 @@ footer{
     grid-row: 5;
 }
 .SalesModal0, .SalesModal1, .SalesModal2, .SalesModal3, .SalesModal4,
-.DevelopmentModal, .DevelopmentModal1, .DevelopmentModal2, .DevelopmentModal3, .DevelopmentModal4,
-.ManagerModal, .ManagerModal1, .ManagerModal2, .ManagerModal3, .ManagerModal4,
-.FinancesModal, .FinancesModal1, .FinancesModal2, .FinancesModal3, .FinancesModal4{
+.DevelopmentModal0, .DevelopmentModal1, .DevelopmentModal2, .DevelopmentModal3, .DevelopmentModal4,
+.ManagerModal0, .ManagerModal1, .ManagerModal2, .ManagerModal3, .ManagerModal4,
+.FinancesModal0, .FinancesModal1, .FinancesModal2, .FinancesModal3, .FinancesModal4{
     display: none;
     position: fixed;
     z-index: 1;
@@ -246,9 +246,9 @@ footer{
     color: black;
 }
 #salesClose0, #salesClose1, #salesClose2, #salesClose3, #salesClose4,
-#managerClose, #managerClose1, #managerClose2, #managerClose3, #managerClose4,
-#financesClose, #financesClose1, #financesClose2, #financesClose3, #financesClose4,
-#developmentClose, #developmentClose1, #developmentClose2, #developmentClose3, #developmentClose4{
+#managerClose0, #managerClose1, #managerClose2, #managerClose3, #managerClose4,
+#financesClose0, #financesClose1, #financesClose2, #financesClose3, #financesClose4,
+#developmentClose0, #developmentClose1, #developmentClose2, #developmentClose3, #developmentClose4{
     color: #aaaaaa;
     float: right;
     font-size: 28px;

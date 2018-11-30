@@ -1,20 +1,29 @@
-function showMeeting($department)
+function showMeeting($department, $increment)
 {
-    // Get the modal
-    var modal = document.getElementById($department + "Modal");
-    var className = document.getElementById($department + "Modal").getAttribute("class")
-    // Get the <span> element that closes the modal
-    if(className == "SalesModal")
-        var span = document.getElementById("salesClose");
-    else if(className == "ManagerModal")
-        var span = document.getElementById("managerClose");
-    else if(className == "DevelopmentModal")
-        var span = document.getElementById("developmentClose");
-    else if(className == "FinancesModal" )
-        var span = document.getElementById("financesClose");
+    modal = null;
+    //Haal de juiste modal binnen (Werkt niet)(pakt alleen de eerste inplaats van de bijbehorende)
+    console.log("Department: " + $department);
+    console.log($department[0]);
+    console.log("Increment: " + $increment);
+    console.log($department + "Modal" + $increment);
+    if(document.getElementById($department + "Modal" + $increment) != null)
+    {
+        modal = document.getElementById($department + "Modal" + $increment);
+        var className = document.getElementById($department + "Modal" + $increment).getAttribute("class");
+        //haal de juiste span erbij die de modal sluit
+        if(className == "SalesModal" + $increment)
+            var span = document.getElementById("salesClose" + $increment);
+        else if(className == "ManagerModal" + $increment)
+            var span = document.getElementById("managerClose" + $increment);
+        else if(className == "DevelopmentModal" + $increment)
+            var span = document.getElementById("developmentClose" + $increment);
+        else if(className == "FinancesModal" + $increment)
+            var span = document.getElementById("financesClose" + $increment);
+        console.log(modal);
+    }
 
     modal.style.display = "block";
-    // When the user clicks on <span> (x), close the modal
+    //sluit de modal als je op (X) drukt
     span.onclick = function() 
     {
         modal.style.display = "none";
@@ -26,4 +35,8 @@ function showMeeting($department)
             modal.style.display = "none";
         }
     }
+}
+function arrangeButtons()
+{
+    
 }
