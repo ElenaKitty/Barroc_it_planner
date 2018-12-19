@@ -7,14 +7,18 @@ a{
     text-decoration: none;
     color: black;
 }
-.container, .mailContainer{
+.container{
     width: 80%;
     margin: 2rem auto;
 }
-li, input{
+.studentContainer{
+    width: 99%;
+    margin: 2rem auto;
+}
+li, input[type="text"]{
     text-align: center;
 }
-input, label, button, .studentContent p{
+input[type="text"], label, button, .studentAgenda p{
     padding: 20px;
     font-size: 26px;
     text-align: center;
@@ -23,7 +27,7 @@ label{
     background-color: #e30613;
     color: white;
 }
-input[type="submit"], button, .studentContent p{
+input[type="submit"], button, .studentAgenda p{
     width: 200px;
     background-color: #e30613;
     border: none;
@@ -62,16 +66,18 @@ header span{
     font-weight: bold;
 }
 footer{
-    padding: 0.5rem 0 0.5rem 1rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
     font-size: 1.25rem;
     color: white;
     font-weight: 400;
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 98.95%;
+    width: 97.94%;
     overflow: hidden;
     min-height: 5%;
+    display: flex;
+    justify-content: space-between;
     background-color: #dc3545;
 }
 #back{
@@ -92,16 +98,8 @@ footer{
     padding: 8px;
     width: 328px;
 }
-.student:hover ul, .docent:hover ul{
-    display: flex;
-}
 .student li:hover, .docent li:hover{
     background-color: #e30613;
-}
-.student ul, .docent ul{
-    display: none;
-    padding: 0;
-    margin: 0;
 }
 .student ul a{
     width: 50%;
@@ -141,89 +139,123 @@ footer{
     width: 50px;
     margin-left: 10px;
 }
-/*---------------------------------- Studenten Panel ----------------------------------*/
-.studentContent{
-    border: 2px solid black;
+/*----------------------------------Mail Panels----------------------------------*/
+.mailContainer #back{
+    margin-right: 0;
+}
+.mailPanel{
+    display: none;    
+    max-width: 80%;
+    min-width: 80%;
+    min-height: 35rem;
+}
+.mails{
     display: flex;
+    flex-direction: column;
+    border: 2px solid #dc3545;
+    padding-right: .3rem;
+    min-width: 17%;
+}
+.mails button{
+    margin: .3rem;
+}
+.currentMail{
+    width: 82%;
+    border: 2px solid #dc3545;
+    border-left: 0;
+}
+.mailInfo{
+    padding: 1rem;
+    border-bottom: 2px solid #dc3545;
+    min-height: 11.5%;
+}
+.mailContent{
+    max-height: 26rem;
+    padding: 1rem;
+    overflow: auto;
+}
+[id^="Finances"]{
+    display: none;
+}
+[id^="Sales"]{
+    display: none;
+}
+[id^="Development"]{
+    display: none;
+}
+[id^="Manager"]{
+    display: none;
+}
+/*---------------------------------- Studenten Panel ----------------------------------*/
+.welcome{
+    text-align: center;
 }
 .studentContent .navigation{
     display: flex;
     flex-direction: column;
+    margin: 3.3rem 0 0 1.6rem;
+}
+.studentContent{
+    display: flex;
     justify-content: space-between;
-    margin-right: 0.25rem;
 }
-.studentContent .navigation p{
-    width: 160px;
+.studentAgenda{
+    display: none;
+    flex-direction: column;
+    min-width: 85%;
 }
-.studentContent .navigation span{
-    font-style: italic;
+#date{
+    align-self: flex-end;
+    padding: 1rem;
 }
-.studentContent .navigation p, .studentContent .navigation button{
-    margin-bottom: 1rem;
-}
-.studentContent #logout{
-    margin: 0;
-}
-.studentContent .welcome{
+.studentAgenda .welcome{
     text-align: center;
 }
-.studentContent .studentPlanning{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    border-left: 2px solid #3174ad;
-    justify-content: space-between;
-}
-.studentContent .planning{
-    display: grid;
+.studentAgenda .planning{
+    border: 1px solid black;
     width: 100%;
     height: 100%;
-    grid-template-rows: 20%;
-    grid-template-columns: 10% auto auto;
-    column-gap: 1rem;
     background: linear-gradient(to bottom, #3174ad 0%, #3174ad 21%, white 21%, white 41%, #3174ad 41%, #3174ad 61%, white 61%, white 81%, #3174ad 81%);
 }
-.studentContent .planning p{
+.studentAgenda .planning p{
     padding: 1rem;
     margin: 0;
-    width: auto;
     background-color: #3174ad
 }
-.studentContent .planning .eightHr, .studentContent .planning .nineHr, .studentContent .planning .tenHr, .studentContent .planning .elevenHr, .studentContent .planning .twelveHr{
+.studentAgenda .planning .eightHr,
+.studentAgenda .planning .nineHr,
+.studentAgenda .planning .tenHr,
+.studentAgenda .planning .elevenHr,
+.studentAgenda .planning .twelveHr{
+    grid-row: 1;
     grid-column: 1;
 }
-.studentContent .planning .eightHrButton, .studentContent .planning .nineHrButton,
-.studentContent .planning .tenHrButton, .studentContent .planning .elevenHrButton, .studentContent .planning .twelveHrButton{
-    padding: 0.5rem;
+.studentAgenda .planning button{
+    padding: 0.2rem;
     margin-top: 0.5rem;
     height: 80%;
-    width: 80%;
 }
-.studentContent .planning .eightHrButton{
-    grid-column: 2;
+.studentAgenda .planning .eightHrArea,
+.studentAgenda .planning .nineHrArea,
+.studentAgenda .planning .tenHrArea,
+.studentAgenda .planning .elevenHrArea,
+.studentAgenda .planning .twelveHrArea{
+    display: grid;
+    grid-auto-columns: max-content;
+    column-gap: 1rem;
+}
+.studentAgenda .planning .eightHrArea p,
+.studentAgenda .planning .nineHrArea p,
+.studentAgenda .planning .tenHrArea p,
+.studentAgenda .planning .elevenHrArea p,
+.studentAgenda .planning .twelveHrArea p{
+    width: 43px;
+}
+[class^="eightHrButton"], [class^="nineHrButton"], [class^="tenHrButton"], [class^="elevenHrButton"], [class^="twelveHrButton"]{
+    width: 10rem;
     grid-row: 1;
 }
-.studentContent .planning .nineHrButton{
-    grid-column: 2;
-    grid-row: 2;
-}
-.studentContent .planning .tenHrButton{
-    grid-column: 2;
-    grid-row: 3;
-}
-
-.studentContent .planning .elevenHrButton{
-    grid-column: 2;
-    grid-row: 4;
-}
-.studentContent .planning .twelveHrButton{
-    grid-column: 2;
-    grid-row: 5;
-}
-.SalesModal0, .SalesModal1, .SalesModal2, .SalesModal3, .SalesModal4,
-.DevelopmentModal0, .DevelopmentModal1, .DevelopmentModal2, .DevelopmentModal3, .DevelopmentModal4,
-.ManagerModal0, .ManagerModal1, .ManagerModal2, .ManagerModal3, .ManagerModal4,
-.FinancesModal0, .FinancesModal1, .FinancesModal2, .FinancesModal3, .FinancesModal4{
+div[class^="SalesModal"], div[class^="DevelopmentModal"], div[class^="ManagerModal"], div[class^="FinancesModal"]{
     display: none;
     position: fixed;
     z-index: 1;
@@ -245,63 +277,9 @@ footer{
     background-color: white;
     color: black;
 }
-#salesClose0, #salesClose1, #salesClose2, #salesClose3, #salesClose4,
-#managerClose0, #managerClose1, #managerClose2, #managerClose3, #managerClose4,
-#financesClose0, #financesClose1, #financesClose2, #financesClose3, #financesClose4,
-#developmentClose0, #developmentClose1, #developmentClose2, #developmentClose3, #developmentClose4{
+[id^="salesClose"], [id^="managerClose"], [id^="financesClose"], [id^="developmentClose"]{
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-}
-#salesClose:hover, #managerClose:hover, #financesClose:hover, #developmentClose:hover,
-#salesClose:focus, #managerClose:focus, #financesClose:focus, #developmentClose:focus{
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/*----------------------------------Mail Panels----------------------------------*/
-.mailContainer #back{
-    margin-right: 0;
-}
-.mailPanel{
-    display: flex;
-    
-}
-.mails{
-    display: flex;
-    flex-direction: column;
-    border: 2px solid #dc3545;
-    padding-right: .3rem;
-    min-width: 13%;
-}
-.mails button{
-    margin: .3rem;
-}
-.currentMail{
-    height: 70%;
-    width: 82%;
-    border: 2px solid #dc3545;
-    border-left: 0;
-}
-.mailInfo{
-    padding: 1rem;
-    border-bottom: 2px solid #dc3545;
-    min-height: 11.5%;
-}
-.mailContent{
-    padding: 1rem;
-}
-#Finances, #Finances1, #finances, #finances1{
-    display: none;
-}
-#Sales, #Sales1, #sales, #Sales1{
-    display: none;
-}
-#Development, #Development1, #development, #devlopement1{
-    display: none;
-}
-#Manager, #Manager1, #manager, #manager1{
-    display: none;
 }

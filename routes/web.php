@@ -35,16 +35,10 @@ Route::get('/docent', function(){
 Route::get('/student', function(){
     return view('/student/student');
 });
-Route::get('/studentMail', function(){
-    return view('/mail');
-});
 
-//login en register voor studenten
+//login voor studenten
 Route::get('/loginStudent', function(){
     return view('/student/loginStudent');
-});
-Route::get('/register', function(){
-    return view('/student/register');
 });
 
 //de home pagina
@@ -56,7 +50,6 @@ Route::get('/home', function(){
 })->name('home');
 
 //Roep de register  of login method aan
-Route::post('/registering', 'registerController@register');
 Route::post('/loggingIn', 'loginController@login');
 
 Route::get('/logout', function(){
