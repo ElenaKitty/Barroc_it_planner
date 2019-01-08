@@ -97,28 +97,38 @@
             $finances = 0;
             foreach($salesMeetings as $meeting)
             {
-                $time = $meeting['time'];
-                echo "<div class='SalesModal" . $sales . "' id='SalesModal" . $sales. "'>";
-                    echo "<div class='modalContent'>";
-                        echo "<span id='salesClose" . $sales . "'>&times;</span>";
-                        echo "<p>Sales</p>";
-                        echo "<p>" . $time . "</p>";
-                        echo "<button>Schedule meeting</button>";
+                $meetingTime = $meeting['meetingTime'];
+                $department = $meeting['department'];
+                $meetingDate = $meeting['meetingDate'];
+                echo "<form action='/mailing' method='post'>";
+                    ?>
+                    {{ csrf_field() }}
+                    <?php
+                    echo "<div class='SalesModal" . $sales . "' id='SalesModal" . $sales. "'>";
+                        echo "<div class='modalContent'>";
+                            echo "<span id='salesClose" . $sales . "'>&times;</span>";
+                            echo "<p>Sales</p>";
+                            echo "<p>" . $meetingTime . "</p>";
+                            echo "<input type='submit' value='Schedule meeting'>";
+                            echo "<input type='hidden' name='meetingTime' value=$meetingTime>";
+                            echo "<input type='hidden' name='department' value=$department>";
+                            echo "<input type='hidden' name='meetingDate' value=$meetingDate>";
+                        echo "</div>";
                     echo "</div>";
-                echo "</div>";
+                echo "</form>";
                 array_push($meeting, $sales);
                 $salesMeetings[$sales] = $meeting;
                 $sales++;
             }
             foreach($managerMeetings as $meeting)
             {  
-                $time = $meeting['time'];
+                $time = $meeting['meetingTime'];
                 echo "<div class='ManagerModal" . $manager . "' id='ManagerModal" . $manager . "'>";
                     echo "<div class='modalContent'>";
                         echo "<span id='managerClose" . $manager . "'>&times;</span>";
                         echo "<p>Manager</p>";
                         echo "<p>" . $time . "</p>";
-                        echo "<button>Schedule meeting</button>";
+                        echo "<input type='submit' value='Schedule meeting'>";
                     echo "</div>";
                 echo "</div>";
                 array_push($meeting, $manager);
@@ -127,13 +137,13 @@
             }
             foreach($developmentMeetings as $meeting)
             {  
-                $time = $meeting['time'];
+                $time = $meeting['meetingTime'];
                 echo "<div class='DevelopmentModal" . $development . "' id='DevelopmentModal" .$development . "'>";
                     echo "<div class='modalContent'>";
                         echo "<span id='developmentClose" . $development . "'>&times;</span>";
                         echo "<p>Development</p>";
                         echo "<p>" . $time . "</p>";
-                        echo "<button>Schedule meeting</button>";
+                        echo "<input type='submit' value='Schedule meeting'>";
                     echo "</div>";
                 echo "</div>";
                 array_push($meeting, $development);
@@ -142,13 +152,13 @@
             }
             foreach($financesMeetings as $meeting)
             {  
-                $time = $meeting['time'];
+                $time = $meeting['meetingTime'];
                 echo "<div class='FinancesModal" . $finances . "' id='FinancesModal" . $finances . "'>";
                     echo "<div class='modalContent'>";
                         echo "<span id='financesClose" . $finances . "'>&times;</span>";
                         echo "<p>Finances</p>";
                         echo "<p>" . $time . "</p>";
-                        echo "<button>Schedule meeting</button>";
+                        echo "<input type='submit' value='Schedule meeting'>";
                     echo "</div>";
                 echo "</div>";
                 array_push($meeting, $finances);

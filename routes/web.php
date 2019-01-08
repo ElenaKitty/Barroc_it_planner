@@ -36,6 +36,9 @@ Route::get('/student', function(){
     return view('/student/student');
 });
 
+
+
+
 //login voor studenten
 Route::get('/loginStudent', function(){
     return view('/student/loginStudent');
@@ -49,8 +52,12 @@ Route::get('/home', function(){
     return view('home');
 })->name('home');
 
-//Roep de register  of login method aan
+//Roep de login method aan
 Route::post('/loggingIn', 'loginController@login');
+Route::post('/mailing', function(){
+    return view("mailing");
+});
+Route::post('/scheduling', 'scheduleController@scheduleMeeting');
 
 Route::get('/logout', function(){
     $_SESSION['user'] = null;

@@ -13,7 +13,7 @@ class planningController extends Controller
         $dbh->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
         date_default_timezone_set("Europe/Amsterdam");
 
-        $sth = $dbh->prepare("SELECT * from `meetings` WHERE meetingDate = :meetingDate ORDER BY time ASC");
+        $sth = $dbh->prepare("SELECT * from `meetings` WHERE meetingDate = :meetingDate && groupNumber IS NULL ORDER BY meetingTime ASC");
         $sth->bindParam(":meetingDate", $date);
         $sth->execute();
         $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
@@ -26,7 +26,7 @@ class planningController extends Controller
         $dbh->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
         date_default_timezone_set("Europe/Amsterdam");
 
-        $sth = $dbh->prepare("SELECT * from `meetings` WHERE meetingDate = :meetingDate && time >= '08:00:00' && time < '09:00:00' ORDER BY time ASC");
+        $sth = $dbh->prepare("SELECT * from `meetings` WHERE meetingDate = :meetingDate && groupNumber IS NULL  && meetingTime >= '08:00:00' && meetingTime < '09:00:00' ORDER BY meetingTime ASC");
         $sth->bindParam(":meetingDate", $date);
         $sth->execute();
         $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
@@ -39,7 +39,7 @@ class planningController extends Controller
         $dbh->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
         date_default_timezone_set("Europe/Amsterdam");
 
-        $sth = $dbh->prepare("SELECT * from `meetings` WHERE meetingDate = :meetingDate && time >= '09:00:00' && time < '10:00:00' ORDER BY time ASC");
+        $sth = $dbh->prepare("SELECT * from `meetings` WHERE meetingDate = :meetingDate && groupNumber IS NULL  && meetingTime >= '09:00:00' && meetingTime < '10:00:00' ORDER BY meetingTime ASC");
         $sth->bindParam(":meetingDate", $date);
         $sth->execute();
         $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
@@ -52,7 +52,7 @@ class planningController extends Controller
         $dbh->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
         date_default_timezone_set("Europe/Amsterdam");
 
-        $sth = $dbh->prepare("SELECT * from `meetings` WHERE meetingDate = :meetingDate && time >= '10:00:00' && time < '11:00:00' ORDER BY time ASC");
+        $sth = $dbh->prepare("SELECT * from `meetings` WHERE meetingDate = :meetingDate && groupNumber IS NULL  && meetingTime >= '10:00:00' && meetingTime < '11:00:00' ORDER BY meetingTime ASC");
         $sth->bindParam(":meetingDate", $date);
         $sth->execute();
         $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
@@ -65,7 +65,7 @@ class planningController extends Controller
         $dbh->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
         date_default_timezone_set("Europe/Amsterdam");
 
-        $sth = $dbh->prepare("SELECT * from `meetings` WHERE meetingDate = :meetingDate && time >= '11:00:00' && time < '12:00:00' ORDER BY time ASC");
+        $sth = $dbh->prepare("SELECT * from `meetings` WHERE meetingDate = :meetingDate && groupNumber IS NULL && meetingTime >= '11:00:00' && meetingTime < '12:00:00' ORDER BY meetingTime ASC");
         $sth->bindParam(":meetingDate", $date);
         $sth->execute();
         $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
@@ -78,7 +78,7 @@ class planningController extends Controller
         $dbh->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
         date_default_timezone_set("Europe/Amsterdam");
 
-        $sth = $dbh->prepare("SELECT * from `meetings` WHERE meetingDate = :meetingDate && time >= '12:00:00' && time < '13:00:00' ORDER BY time ASC");
+        $sth = $dbh->prepare("SELECT * from `meetings` WHERE meetingDate = :meetingDate && groupNumber IS NULL  && meetingTime >= '12:00:00' && meetingTime < '13:00:00' ORDER BY meetingTime ASC");
         $sth->bindParam(":meetingDate", $date);
         $sth->execute();
         $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
@@ -91,7 +91,7 @@ class planningController extends Controller
         $dbh->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
         date_default_timezone_set("Europe/Amsterdam");
 
-        $sth = $dbh->prepare("SELECT * FROM `meetings` WHERE department = 'Sales' && meetingDate = :meetingDate ORDER BY time ASC");
+        $sth = $dbh->prepare("SELECT * FROM `meetings` WHERE department = 'Sales' && groupNumber IS NULL  && meetingDate = :meetingDate ORDER BY meetingTime ASC");
         $sth->bindParam(":meetingDate", $date);
         $sth->execute();
         $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
@@ -104,7 +104,7 @@ class planningController extends Controller
         $dbh->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
         date_default_timezone_set("Europe/Amsterdam");
 
-        $sth = $dbh->prepare("SELECT * FROM `meetings` WHERE department = 'Manager' && meetingDate = :meetingDate ORDER BY time ASC");
+        $sth = $dbh->prepare("SELECT * FROM `meetings` WHERE department = 'Manager' && groupNumber IS NULL  && meetingDate = :meetingDate ORDER BY meetingTime ASC");
         $sth->bindParam(":meetingDate", $date);
         $sth->execute();
         $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
@@ -117,7 +117,7 @@ class planningController extends Controller
         $dbh->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
         date_default_timezone_set("Europe/Amsterdam");
 
-        $sth = $dbh->prepare("SELECT * FROM `meetings` WHERE department = 'Development' && meetingDate = :meetingDate ORDER BY time ASC");
+        $sth = $dbh->prepare("SELECT * FROM `meetings` WHERE department = 'Development' && groupNumber IS NULL  && meetingDate = :meetingDate ORDER BY meetingTime ASC");
         $sth->bindParam(":meetingDate", $date);
         $sth->execute();
         $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
@@ -130,7 +130,7 @@ class planningController extends Controller
         $dbh->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
         date_default_timezone_set("Europe/Amsterdam");
 
-        $sth = $dbh->prepare("SELECT * FROM `meetings` WHERE department = 'Finances' && meetingDate = :meetingDate ORDER BY time ASC");
+        $sth = $dbh->prepare("SELECT * FROM `meetings` WHERE department = 'Finances' && groupNumber IS NULL  && meetingDate = :meetingDate ORDER BY meetingTime ASC");
         $sth->bindParam(":meetingDate", $date);
         $sth->execute();
         $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
