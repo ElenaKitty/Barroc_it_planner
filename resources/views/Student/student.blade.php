@@ -4,11 +4,12 @@
     use \App\Http\Controllers\planningController;
     $mails = mailController::getMails();
     //kijk of er in de session een datum zit zo niet zet de date op null
-    if(isset($_SESSION['date']))
+    if(isset($_SESSION['date']) && $_SESSION['date'] != "")
     {
         $date = $_SESSION['date'];
     }
-    else{
+    else
+    {
         $date = null;
     }
     $meetings = planningController::getAllMeetings($date);
@@ -38,9 +39,10 @@
 <div class="panelContent" id="panelContent">
     <div class="navigation" id ="navigation">
         <button id="mail" onClick="showMails()">Open Mail</button>
-        <button id="agenda" onClick="showAgenda()">Open Agenda</button>
+        <button id="agenda" onClick="showAgenda()">Plan Meeting</button>
         <button id="logout" onClick="window.location='/logout'">Logout</button>
     </div>
+ 
     <div class="mailPanel" id="mailPanel">
         <!-- haal alle mails van de gebruiker op en geef ze weer. -->
         <div class="mails">
@@ -100,7 +102,7 @@
         <form action="/changeDate" method='post' class='dateSelector'>
             {{ csrf_field() }}
             <input type="date" name='date' class="date" value=<?php echo $date;?>>  
-            <input type="submit" class='dateButton' value='Go'>
+            <input type="submit" class='dateButton' id='dateButton' value='Go'>
         </form> 
         <div class="modals">
             <?php
@@ -109,7 +111,8 @@
             $managerMeetings = planningController::getManagerMeetings($date);
             $developmentMeetings = planningController::getDevelopmentMeetings($date);
             $financesMeetings = planningController::getFinancesMeetings($date);
-
+            
+            //increment zodat de website weet welke modal hij moet pakken
             $sales = 0;
             $manager = 0;
             $development = 0;
@@ -144,15 +147,25 @@
             //maak voor iedere manager meeting een managerModal
             foreach($managerMeetings as $meeting)
             {  
-                $time = $meeting['meetingTime'];
-                echo "<div class='ManagerModal" . $manager . "' id='ManagerModal" . $manager . "'>";
-                    echo "<div class='modalContent'>";
-                        echo "<span id='managerClose" . $manager . "'>&times;</span>";
-                        echo "<p>Manager</p>";
-                        echo "<p>" . $time . "</p>";
-                        echo "<input type='submit' value='Schedule meeting'>";
+                $meetingTime = $meeting['meetingTime'];
+                $department = $meeting['department'];
+                $meetingDate = $meeting['meetingDate'];
+                echo "<form action='/mailing' method='post'>";
+                    ?>
+                    {{ csrf_field() }}
+                    <?php
+                    echo "<div class='ManagerModal" . $manager . "' id='ManagerModal" . $manager . "'>";
+                        echo "<div class='modalContent'>";
+                            echo "<span id='managerClose" . $manager . "'>&times;</span>";
+                            echo "<p>Manager</p>";
+                            echo "<p>" . $meetingTime . "</p>";
+                            echo "<input type='submit' value='Schedule meeting'>";
+                            echo "<input type='hidden' name='meetingTime' value=$meetingTime>";
+                            echo "<input type='hidden' name='department' value=$department>";
+                            echo "<input type='hidden' name='meetingDate' value=$meetingDate>";
+                        echo "</div>";
                     echo "</div>";
-                echo "</div>";
+                echo "</form>";
                 //voeg deze meeting tooe aan de array met manager meetings
                 array_push($meeting, $manager);
                 $managerMeetings[$manager] = $meeting;
@@ -161,15 +174,25 @@
             //maak voor iedere development meeting een developmentModal
             foreach($developmentMeetings as $meeting)
             {  
-                $time = $meeting['meetingTime'];
-                echo "<div class='DevelopmentModal" . $development . "' id='DevelopmentModal" .$development . "'>";
-                    echo "<div class='modalContent'>";
-                        echo "<span id='developmentClose" . $development . "'>&times;</span>";
-                        echo "<p>Development</p>";
-                        echo "<p>" . $time . "</p>";
-                        echo "<input type='submit' value='Schedule meeting'>";
+                $meetingTime = $meeting['meetingTime'];
+                $department = $meeting['department'];
+                $meetingDate = $meeting['meetingDate'];
+                echo "<form action='/mailing' method='post'>";
+                    ?>
+                    {{ csrf_field() }}
+                    <?php
+                    echo "<div class='DevelopmentModal" . $development . "' id='DevelopmentModal" .$development . "'>";
+                        echo "<div class='modalContent'>";
+                            echo "<span id='developmentClose" . $development . "'>&times;</span>";
+                            echo "<p>Development</p>";
+                            echo "<p>" . $meetingTime . "</p>";
+                            echo "<input type='submit' value='Schedule meeting'>";
+                            echo "<input type='hidden' name='meetingTime' value=$meetingTime>";
+                            echo "<input type='hidden' name='department' value=$department>";
+                            echo "<input type='hidden' name='meetingDate' value=$meetingDate>";
+                        echo "</div>";
                     echo "</div>";
-                echo "</div>";
+                echo "</form>";
                 //voeg deze meeting tooe aan de array met development meetings
                 array_push($meeting, $development);
                 $developmentMeetings[$development] = $meeting;
@@ -178,15 +201,25 @@
             //maak voor iedere finances meeting een financesModal
             foreach($financesMeetings as $meeting)
             {  
-                $time = $meeting['meetingTime'];
+                $meetingTime = $meeting['meetingTime'];
+                $department = $meeting['department'];
+                $meetingDate = $meeting['meetingDate'];
+                echo "<form action='/mailing' method='post'>";
+                ?>
+                {{ csrf_field() }}
+                <?php
                 echo "<div class='FinancesModal" . $finances . "' id='FinancesModal" . $finances . "'>";
                     echo "<div class='modalContent'>";
-                        echo "<span id='financesClose" . $finances . "'>&times;</span>";
-                        echo "<p>Finances</p>";
-                        echo "<p>" . $time . "</p>";
-                        echo "<input type='submit' value='Schedule meeting'>";
+                            echo "<span id='financesClose" . $finances . "'>&times;</span>";
+                            echo "<p>Finances</p>";
+                            echo "<p>" . $meetingTime . "</p>";
+                            echo "<input type='submit' value='Schedule meeting'>";
+                            echo "<input type='hidden' name='meetingTime' value=$meetingTime>";
+                            echo "<input type='hidden' name='department' value=$department>";
+                            echo "<input type='hidden' name='meetingDate' value=$meetingDate>";
+                        echo "</div>";
                     echo "</div>";
-                echo "</div>";
+                echo "</form>";
                 //voeg deze meeting tooe aan de array met finances meetings
                 array_push($meeting, $finances);
                 $financesMeetings[$finances] = $meeting;
@@ -365,5 +398,9 @@
     </div>
 </div>
 <?php
+    if(isset($_SESSION['date']) && $_SESSION['date'] != "")
+    {
+        echo "<script> document.getElementById('agenda').click();</script>";
+    }
     include_once("footer.php");
 ?>

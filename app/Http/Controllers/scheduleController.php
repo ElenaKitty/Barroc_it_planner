@@ -54,8 +54,5 @@ class scheduleController extends Controller
             $_SESSION['feedback'] = "Sorry er ging iets fout" ;
             return redirect('/student');
         }
-        var_dump($mailSend);
-        var_dump($department);
-        var_dump($meetingTime);
     }
 }

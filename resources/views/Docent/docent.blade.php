@@ -38,7 +38,7 @@
         <button id="agenda" onClick="showAgenda()">Open Agenda</button>
         <button id="interview" onClick="">Interview toevoegen</button>
         <button id="drop" onClick="">Verwijder alle data</button>
-        <button id="assemble" onClick="">Studenten groeperen</button>
+        <button id="group" onClick="">Studenten groeperen</button>
         <button id="logout" onClick="window.location='/amoclient/logout'">Logout</button>
     </div>
     <div class="mailPanel" id="mailPanel">
