@@ -136,5 +136,11 @@ class planningController extends Controller
         $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
         return $result;
     }
+    public static function setDate()
+    {
+        // var_dump($_POST);
+        $_SESSION['date'] = $_POST['date'];
+        return redirect('/student');
+    }
 
 }

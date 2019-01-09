@@ -57,6 +57,8 @@ Route::post('/loggingIn', 'loginController@login');
 Route::post('/mailing', function(){
     return view("mailing");
 });
+
+Route::post('/changeDate', 'planningController@setDate');
 Route::post('/scheduling', 'scheduleController@scheduleMeeting');
 
 Route::get('/logout', function(){

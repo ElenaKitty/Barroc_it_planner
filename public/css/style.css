@@ -11,14 +11,14 @@ a{
     width: 80%;
     margin: 2rem auto;
 }
-.studentContainer{
+.panelContainer{
     width: 99%;
-    margin: 2rem auto;
+    margin: 1rem auto 2rem auto;
 }
 li, input[type="text"]{
     text-align: center;
 }
-input[type="text"], label, button, .studentAgenda p{
+input[type="text"], label, button, .panelAgenda p{
     padding: 20px;
     font-size: 26px;
     text-align: center;
@@ -27,7 +27,7 @@ label{
     background-color: #e30613;
     color: white;
 }
-input[type="submit"], button, .studentAgenda p{
+input[type="submit"], button, .panelAgenda p{
     width: 200px;
     background-color: #e30613;
     border: none;
@@ -163,9 +163,10 @@ footer{
 .mails button{
     margin: .3rem;
 }
-.currentmail{
+.currentMail{
     border: 2px solid #dc3545;
     border-left: 0;
+    width: 82%;
 }
 .currentMailSend{
     display: flex;
@@ -225,28 +226,34 @@ footer{
 .welcome{
     text-align: center;
 }
-.studentContent .navigation{
+.panelContent .navigation, .panelContent .docentNavigation{
     display: flex;
     flex-direction: column;
     margin: 3.3rem 0 0 1.6rem;
 }
-.studentContent{
+.panelContent .docentNavigation{
+    margin: 0 0 0 1.6rem;
+}
+.panelContent{
     display: flex;
     justify-content: space-between;
 }
-.studentAgenda{
+.panelAgenda{
     display: none;
     flex-direction: column;
     min-width: 85%;
+    max-height: 23.5rem;
 }
-#date{
+.dateSelector{
     align-self: flex-end;
-    padding: 1rem;
 }
-.studentAgenda .welcome{
+.dateButton, .date{
+    padding: 0.5rem;
+}
+.panelAgenda .welcome{
     text-align: center;
 }
-.studentAgenda .planning{
+.panelAgenda .planning{
     border: 1px solid black;
     width: 100%;
     height: 100%;
@@ -254,38 +261,38 @@ footer{
     overflow-y: hidden;
     background: linear-gradient(to bottom, #3174ad 0%, #3174ad 20%, white 20%, white 39%, #3174ad 39%, #3174ad 58%, white 58%, white 76%, #3174ad 76%)
 }
-.studentAgenda .planning p{
+.panelAgenda .planning p{
     padding: 1rem;
     margin: 0;
     background-color: #3174ad
 }
-.studentAgenda .planning .eightHr,
-.studentAgenda .planning .nineHr,
-.studentAgenda .planning .tenHr,
-.studentAgenda .planning .elevenHr,
-.studentAgenda .planning .twelveHr{
+.panelAgenda .planning .eightHr,
+.panelAgenda .planning .nineHr,
+.panelAgenda .planning .tenHr,
+.panelAgenda .planning .elevenHr,
+.panelAgenda .planning .twelveHr{
     grid-row: 1;
     grid-column: 1;
 }
-.studentAgenda .planning button{
+.panelAgenda .planning button{
     padding: 0.2rem;
     margin-top: 0.5rem;
     height: 80%;
 }
-.studentAgenda .planning .eightHrArea,
-.studentAgenda .planning .nineHrArea,
-.studentAgenda .planning .tenHrArea,
-.studentAgenda .planning .elevenHrArea,
-.studentAgenda .planning .twelveHrArea{
+.panelAgenda .planning .eightHrArea,
+.panelAgenda .planning .nineHrArea,
+.panelAgenda .planning .tenHrArea,
+.panelAgenda .planning .elevenHrArea,
+.panelAgenda .planning .twelveHrArea{
     display: grid;
     grid-auto-columns: max-content;
     column-gap: 0.3rem;
 }
-.studentAgenda .planning .eightHrArea p,
-.studentAgenda .planning .nineHrArea p,
-.studentAgenda .planning .tenHrArea p,
-.studentAgenda .planning .elevenHrArea p,
-.studentAgenda .planning .twelveHrArea p{
+.panelAgenda .planning .eightHrArea p,
+.panelAgenda .planning .nineHrArea p,
+.panelAgenda .planning .tenHrArea p,
+.panelAgenda .planning .elevenHrArea p,
+.panelAgenda .planning .twelveHrArea p{
     width: 43px;
 }
 [class^="eightHrButton"], [class^="nineHrButton"], [class^="tenHrButton"], [class^="elevenHrButton"], [class^="twelveHrButton"]{

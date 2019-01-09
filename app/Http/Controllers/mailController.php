@@ -60,26 +60,29 @@ class mailController extends Controller
     }
     public static function getMails()
     {
-        $groupNumber = $_SESSION['user'];
-        $dbh = new \PDO('mysql:host=localhost;dbname=planner_barroc', 'root', '');
-        $dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-        $dbh->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
+        if(isset($_SESSION['user']))
+        {
+            $groupNumber = $_SESSION['user'];
+            $dbh = new \PDO('mysql:host=localhost;dbname=planner_barroc', 'root', '');
+            $dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            $dbh->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 
-        if($_SESSION['user'] >= 1)
-        {
-            $sth = $dbh->prepare("SELECT * from `mails` where mailResponse IS NOT null && groupNumber = :groupNumber");
-            $sth->bindParam(":groupNumber", $groupNumber);
-            $sth->execute();
-            $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
-            return $result;
-        }
-        if($_SESSION['user'] == "docent")
-        {
-            $sth = $dbh->prepare("SELECT * from `mails` where mailResponse == null && department == :department");
-            $sth->bindParam(":department", $department);
-            $sth->execute();
-            $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
-            return $result;
+            if($_SESSION['user'] >= 1)
+            {
+                $sth = $dbh->prepare("SELECT * from `mails` where mailResponse IS NOT null && groupNumber = :groupNumber");
+                $sth->bindParam(":groupNumber", $groupNumber);
+                $sth->execute();
+                $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
+                return $result;
+            }
+            if($_SESSION['user'] == "docent")
+            {
+                $sth = $dbh->prepare("SELECT * from `mails` where mailResponse IS null && department = :department");
+                $sth->bindParam(":department", $department);
+                $sth->execute();
+                $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
+                return $result;
+            }
         }
     }
 }

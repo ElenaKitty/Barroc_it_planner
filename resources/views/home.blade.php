@@ -3,6 +3,7 @@
     if(isset($_SESSION['feedback']))
         echo "<p class='feedback'>" .  $_SESSION['feedback'] . "</p>";
     $_SESSION['feedback'] = "";
+    $_SESSIOn['date'] = null;
 ?>
     <div class="content">
         <div class="student">

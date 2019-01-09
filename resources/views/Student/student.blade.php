@@ -2,13 +2,17 @@
     include_once("header.php");
     use \App\Http\Controllers\mailController;
     use \App\Http\Controllers\planningController;
-    $date = date("2018-12-05");
-    $meetings = planningController::getAllMeetings($date);
     $mails = mailController::getMails();
+    //kijk of er in de session een datum zit zo niet zet de date op null
     if(isset($_SESSION['date']))
     {
-        var_dump($_SESSION['date']);
+        $date = $_SESSION['date'];
     }
+    else{
+        $date = null;
+    }
+    $meetings = planningController::getAllMeetings($date);
+    //kijk of de user is ingelogt
     if((!isset($_SESSION['user'])))
     {
         $_SESSION['feedback'] = "Je moet ingelogt zijn voor de studentenPanel pagina.";
@@ -20,16 +24,25 @@
 <script src="{{ URL::asset('js/mail.js') }}"></script>
 <title>Studenten panel</title>
 <div class="welcome">
+    <?php 
+    //zet de feedback op het scherm en verwijder deze dan.
+    if(isset($_SESSION['feedback']))
+    {
+        echo $_SESSION['feedback'];
+        $_SESSION['feedback'] = null;
+    }
+    ?>
     <h1>Hallo <?php echo "Groep: " . $_SESSION['user'];?></h1>
 </div>
 
-<div class="studentContent" id="studentContent">
+<div class="panelContent" id="panelContent">
     <div class="navigation" id ="navigation">
         <button id="mail" onClick="showMails()">Open Mail</button>
         <button id="agenda" onClick="showAgenda()">Open Agenda</button>
         <button id="logout" onClick="window.location='/logout'">Logout</button>
     </div>
     <div class="mailPanel" id="mailPanel">
+        <!-- haal alle mails van de gebruiker op en geef ze weer. -->
         <div class="mails">
             <?php 
                 if($mails != null)
@@ -51,6 +64,7 @@
             ?>
         </div>
         <div class="currentMail">
+            <!-- laat de informatie van de mail zien -->
             <div class="mailInfo">
                 <?php 
                     if($mails != null)
@@ -66,6 +80,7 @@
                     }
                 ?>
             </div>
+            <!-- laat de content van de mail zien -->
             <div class="mailContent">
                 <?php
                     if($mails != null)
@@ -81,8 +96,12 @@
             </div>
         </div>
     </div>       
-    <div class="studentAgenda" id="studentAgenda">
-        <input type="date" name="date"onchange="updateAgenda()" id="date" value="<?php echo $date;?>">  
+    <div class="panelAgenda" id="panelAgenda">
+        <form action="/changeDate" method='post' class='dateSelector'>
+            {{ csrf_field() }}
+            <input type="date" name='date' class="date" value=<?php echo $date;?>>  
+            <input type="submit" class='dateButton' value='Go'>
+        </form> 
         <div class="modals">
             <?php
             // de meetings aan de hand van de afdeling
@@ -95,6 +114,7 @@
             $manager = 0;
             $development = 0;
             $finances = 0;
+            //maak voor iedere sales meeting een salesModal
             foreach($salesMeetings as $meeting)
             {
                 $meetingTime = $meeting['meetingTime'];
@@ -116,10 +136,12 @@
                         echo "</div>";
                     echo "</div>";
                 echo "</form>";
+                //voeg deze meeting toe aan de array met sales meetings
                 array_push($meeting, $sales);
                 $salesMeetings[$sales] = $meeting;
                 $sales++;
             }
+            //maak voor iedere manager meeting een managerModal
             foreach($managerMeetings as $meeting)
             {  
                 $time = $meeting['meetingTime'];
@@ -131,10 +153,12 @@
                         echo "<input type='submit' value='Schedule meeting'>";
                     echo "</div>";
                 echo "</div>";
+                //voeg deze meeting tooe aan de array met manager meetings
                 array_push($meeting, $manager);
                 $managerMeetings[$manager] = $meeting;
                 $manager++;
             }
+            //maak voor iedere development meeting een developmentModal
             foreach($developmentMeetings as $meeting)
             {  
                 $time = $meeting['meetingTime'];
@@ -146,10 +170,12 @@
                         echo "<input type='submit' value='Schedule meeting'>";
                     echo "</div>";
                 echo "</div>";
+                //voeg deze meeting tooe aan de array met development meetings
                 array_push($meeting, $development);
                 $developmentMeetings[$development] = $meeting;
                 $development++;
             }
+            //maak voor iedere finances meeting een financesModal
             foreach($financesMeetings as $meeting)
             {  
                 $time = $meeting['meetingTime'];
@@ -161,6 +187,7 @@
                         echo "<input type='submit' value='Schedule meeting'>";
                     echo "</div>";
                 echo "</div>";
+                //voeg deze meeting tooe aan de array met finances meetings
                 array_push($meeting, $finances);
                 $financesMeetings[$finances] = $meeting;
                 $finances++;

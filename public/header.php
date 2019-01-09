@@ -13,7 +13,7 @@
     </header>
     <?php 
     $url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
-    if(strpos($url, "student") !== false)
-        echo "<div class='studentContainer'>";
+    if(strpos($url, "student") !== false || strpos($url, "docent") !== false)
+        echo "<div class='panelContainer'>";
     else
         echo "<div class='container'>";

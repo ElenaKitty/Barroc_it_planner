@@ -9,21 +9,24 @@ class scheduleController extends Controller
     public static function scheduleMeeting()
     {
         $timeSend = date("Y-m-d");
-        include_once('header.php');
-        var_dump($_POST);
         $group = $_SESSION['user'];
         $department = $_POST['department'];
         $meetingTime = $_POST['meetingTime'];
-        $mailSend = $_POST['mailSend'] . $_POST['mailSend2'];
+        $temp = explode(" ", $meetingTime);
+        $date = $temp[0];
+        $time = $temp[1];
+        $mailSend = $_POST['mailSend'] . " " . $_POST['mailSend2'];
+
         //zorgt ervoor dat de meeting wordt ingevult en dat hij verdwijnt uit de lijst met beschikbare meetings
         $dbh = new \PDO('mysql:host=localhost;dbname=planner_barroc', 'root', '');
         $dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         $dbh->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
         
-        if($mailSend == null)
+        //als er niets is ingevult stuur de gebruiker terug naar de planning
+        if($mailSend == null || $mailSend == " ")
         {
             $_SESSION['feedback'] = "Je moet wel de mail schrijven";
-            return redirect('/mailing');
+            return redirect('/student');
         }
         else if($department != null && $meetingTime != null && $mailSend != null)
         {
@@ -33,20 +36,26 @@ class scheduleController extends Controller
             $sth->bindParam(":mailSend", $mailSend);
             $sth->bindParam(":meetingTime", $meetingTime);
             $sth->bindParam(":timeSend", $timeSend);
-            var_dump($sth->execute());
+            $sth->execute();
+
+            $sth = $dbh->prepare("UPDATE meetings SET `groupNumber` = :groupNumber WHERE department = :department && meetingTime = :meetingTime && meetingDate = :meetingDate");
+            $sth->bindParam(":groupNumber", $group);
+            $sth->bindParam(":department", $department);
+            $sth->bindParam(":meetingTime", $time);
+            $sth->bindParam(":meetingDate", $date);
+
+            $sth->execute();
 
             $_SESSION['feedback'] = "Afspraak gepland";
-            // return redirect('/student');
+            return redirect('/student');
         }
         else
         {
             $_SESSION['feedback'] = "Sorry er ging iets fout" ;
-            // return redirect('/student');
+            return redirect('/student');
         }
-        echo $_SESSION['feedback'];
-        echo $department;
-        echo $meetingTime;
-        echo $mailSend;
-        include_once('footer.php'); 
+        var_dump($mailSend);
+        var_dump($department);
+        var_dump($meetingTime);
     }
 }
