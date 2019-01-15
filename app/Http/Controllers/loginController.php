@@ -25,7 +25,7 @@ class loginController extends Controller
             $_SESSION['feedback'] = "Groep nog niet geregistreerd";
             return redirect('loginStudent');
         }
-        else if(password_verify($_POST['password'], $result[0]['password']))
+        else if($_POST['password'] == $result[0]['password'])
         {
             $_SESSION['feedback'] = "";
             $_SESSION['user'] = $groupnumber;
@@ -36,6 +36,5 @@ class loginController extends Controller
             $_SESSION['feedback'] = "incorrect wachtwoord";
             return redirect('/loginStudent');
         }
-        //var_dump($sth->fetchAll(\PDO::FETCH_ASSOC));
     }
 }

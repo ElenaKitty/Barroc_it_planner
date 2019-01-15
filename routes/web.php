@@ -36,8 +36,12 @@ Route::get('/student', function(){
     return view('/student/student');
 });
 
-
-
+Route::get('/createMeeting', function(){
+    return view('/docent/meeting');
+});
+Route::get('/groupStudents', function(){
+    return view('/docent/groups');
+});
 
 //login voor studenten
 Route::get('/loginStudent', function(){
@@ -60,6 +64,8 @@ Route::post('/mailing', function(){
 
 Route::post('/changeDate', 'planningController@setDate');
 Route::post('/scheduling', 'scheduleController@scheduleMeeting');
+Route::post('/addMeeting', 'meetingController@addMeeting');
+Route::post('/truncate', 'dataController@truncate');
 
 Route::get('/logout', function(){
     $_SESSION['user'] = null;

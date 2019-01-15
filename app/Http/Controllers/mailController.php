@@ -40,7 +40,7 @@ class mailController extends Controller
         $dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         $dbh->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 
-        if($_SESSION['user'] == "student")
+        if($_SESSION['user'] >= 0)
         {
             $sth = $dbh->prepare("SELECT * from `mails` where groupNumber == :groupNumber && department == :department");
             $sth->bindParam(":groupNumber", $groupNumber);
@@ -67,22 +67,19 @@ class mailController extends Controller
             $dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             $dbh->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 
-            if($_SESSION['user'] >= 1)
+            if($_SESSION['user'] >= 0)
             {
                 $sth = $dbh->prepare("SELECT * from `mails` where mailResponse IS NOT null && groupNumber = :groupNumber");
                 $sth->bindParam(":groupNumber", $groupNumber);
-                $sth->execute();
-                $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
-                return $result;
             }
             if($_SESSION['user'] == "docent")
             {
-                $sth = $dbh->prepare("SELECT * from `mails` where mailResponse IS null && department = :department");
-                $sth->bindParam(":department", $department);
-                $sth->execute();
-                $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
-                return $result;
+                $sth = $dbh->prepare("SELECT * from `mails` where mailResponse IS null");
+                // $sth->bindParam(":department", $department);
             }
+            $sth->execute();
+            $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
+            return $result;
         }
     }
 }

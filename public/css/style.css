@@ -44,7 +44,7 @@ input[type="submit"], button, .panelAgenda p{
     display: flex;
     justify-content: space-around;
 }
-#login, #register{
+#login, #addMeeting{
     align-self: flex-end;
     margin-right: 15rem;
 }
@@ -115,12 +115,14 @@ footer{
 .docent a{
     width: 100%;
 }
-.feedback{
+.feedback, .mailFeedback{
     text-align: center;
     font-size: 3em;
     margin-bottom: 1em;
 }
-
+.mailFeedback{
+    font-size: 2em;
+}
 /*---------------------------------- Login Studenten ----------------------------------*/
 .studentLogin label, .studentLogin input{
     padding: 20px;
@@ -128,16 +130,6 @@ footer{
 }
 .feedback{
     text-align: center;
-}
-/*---------------------------------- Register Studenten ----------------------------------*/
-.groupNumber{
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
-}
-.groupNumber input{
-    width: 50px;
-    margin-left: 10px;
 }
 /*----------------------------------Mail Panels----------------------------------*/
 .mailContainer #back{
@@ -163,10 +155,18 @@ footer{
 .mails button{
     margin: .3rem;
 }
-.currentMail{
+.currentMail, .mailForm{
     border: 2px solid #dc3545;
     border-left: 0;
     width: 82%;
+}
+.mailForm .currentMail{
+    border: 0;
+    width: 100%;
+}
+.mailForm .currentMail .mailInfo{
+    min-height: 63.938px;
+    padding: 1rem;
 }
 .currentMailSend{
     display: flex;
@@ -210,19 +210,23 @@ footer{
     height: 13rem;
     background: transparent;
 }
-[id^="Finances"]{
+[id^="FinancesHead"], [id^="FinancesText"]{
     display: none;
 }
-[id^="Sales"]{
+[id^="SalesHead"], [id^="SalesText"]{
     display: none;
 }
-[id^="Development"]{
+[id^="DevelopmentHead"], [id^="DevelopmentText"]{
     display: none;
 }
-[id^="Manager"]{
+[id^="ManagerHead"], [id^="ManagerText"]{
     display: none;
 }
-/*---------------------------------- Studenten Panel ----------------------------------*/
+[id^='respondButton']
+{
+    /* display: none; */
+}
+/*---------------------------------- Studenten en Docenten Panel ----------------------------------*/
 .welcome{
     text-align: center;
 }
@@ -230,6 +234,9 @@ footer{
     display: flex;
     flex-direction: column;
     margin: 3.3rem 0 0 1.6rem;
+}
+.panelContent .navigation button, .panelContent .docentNavigation button{
+    margin-bottom: 5px;
 }
 .panelContent .docentNavigation{
     margin: 0 0 0 1.6rem;
@@ -300,7 +307,7 @@ footer{
     min-width: 10rem;
     grid-row: 1;
 }
-div[class^="SalesModal"], div[class^="DevelopmentModal"], div[class^="ManagerModal"], div[class^="FinancesModal"]{
+div[class^="SalesModal"], div[class^="DevelopmentModal"], div[class^="ManagerModal"], div[class^="FinancesModal"], div[class="truncateModal"]{
     display: none;
     position: fixed;
     z-index: 1;
@@ -309,6 +316,17 @@ div[class^="SalesModal"], div[class^="DevelopmentModal"], div[class^="ManagerMod
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.4);
+}
+.truncateModal .modalContent{
+    text-align: center;
+}
+.truncateModal .modalContent input[type='text']{
+    width: 50%;
+    font-size: 12px;
+}
+.truncateModal .modalContent span{
+    font-weight: bolder;
+    font-style: italic;
 }
 .modalContent {
     background-color: #e30613;
@@ -324,9 +342,53 @@ div[class^="SalesModal"], div[class^="DevelopmentModal"], div[class^="ManagerMod
     background-color: white;
     color: black;
 }
-[id^="salesClose"], [id^="managerClose"], [id^="financesClose"], [id^="developmentClose"]{
+[id^="salesClose"], [id^="managerClose"], [id^="financesClose"], [id^="developmentClose"], [id="truncateClose"]{
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
+}
+/*----------------------------------groupStudents (students.blade.php)----------------------------------*/
+.studentsList form{
+    display: flex;
+    flex-direction: column;
+}
+.studentsList form input[type="submit"]
+{
+    align-self: center;
+    padding: 0.5rem;
+    font-size: 18px;
+    margin-top: 1rem
+}
+.studentsList form input[type='number']
+{
+    width: 2.5rem;
+}
+.studentsList form .student{
+    display: flex;
+    justify-content: center;
+}
+.studentsList form .student p{
+    width: 13rem;
+    margin-right: 2rem;
+}
+/*----------------------------------Meeting.blade.php----------------------------------*/
+.addMeeting form .information{
+    display: flex;
+    justify-content: space-around;
+}
+.addMeeting form .labels, .addMeeting form .fields{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+.addMeeting form input{
+    width: 10rem;
+    text-align: center;
+    font-size: 18px;
+    padding: 0.5rem;
+}
+.addMeeting form #addMeeting{
+    padding: 0.5rem;
+    font-size: 18px;
 }

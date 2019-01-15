@@ -36,6 +36,24 @@ function showAgenda()
     panel = document.getElementById("mailPanel");
     agenda = document.getElementById("panelAgenda")
     content = document.getElementById("panelContent");
+    if(document.getElementById("Finances"))
+        var FinancesHead = document.getElementById("Finances");
+    if(document.getElementById("Finances1"))
+        var FinancesText = document.getElementById("Finances1");
+    if(document.getElementById("Sales"))
+        var SalesHead = document.getElementById("Sales");
+    if(document.getElementById("Sales1"))
+        var SalesText = document.getElementById("Sales1");
+    if(document.getElementById("Development"))
+        var DevelopmentHead = document.getElementById("Development");
+    if(document.getElementById("Development1"))
+        var DevelopmentText = document.getElementById("Development1");
+    if(document.getElementById("Manager"))
+        var ManagerHead = document.getElementById("Manager");
+    if(document.getElementById("Manager1"))
+        var ManagerText = document.getElementById("Manager1");
+
+
       //kijk of navigation en docentNavigatio niet null is
     if(document.getElementById("navigation") != null)
         navigation = document.getElementById("navigation");
@@ -56,6 +74,23 @@ function showAgenda()
     else 
     {
         agenda.style.display = "flex";
+        panel.style.display = "none";
+        if(document.getElementById("Finances"))
+            FinancesHead.style.display = "none";        
+        if(document.getElementById("Finances1"))
+            FinancesHead.style.display = "none";        
+        if(document.getElementById("Sales"))
+            SalesHead.style.display = "none";
+        if(document.getElementById("Sales1"))
+            SalesText.style.display = "none";
+        if(document.getElementById("Development"))
+            DevelopmentHead.style.display = "none";
+        if(document.getElementById("Development1"))
+            DevelopmentText.style.display = "none";
+        if(document.getElementById("Manager"))
+            ManagerHead.style.display = "none";
+        if(document.getElementById("Manager1"))
+            ManagerText.style.display = "none";  
     }
     panel.style.display = "none";
 }
@@ -65,6 +100,23 @@ function showMails()
     panel = document.getElementById("mailPanel");
     agenda = document.getElementById("panelAgenda")
     content = document.getElementById("panelContent");
+    if(document.getElementById("Finances"))
+        var FinancesHead = document.getElementById("Finances");
+    if(document.getElementById("Finances1"))
+        var FinancesText = document.getElementById("Finances1");
+    if(document.getElementById("Sales"))
+        var SalesHead = document.getElementById("Sales");
+    if(document.getElementById("Sales1"))
+        var SalesText = document.getElementById("Sales1");
+    if(document.getElementById("Development"))
+        var DevelopmentHead = document.getElementById("Development");
+    if(document.getElementById("Development1"))
+        var DevelopmentText = document.getElementById("Development1");
+    if(document.getElementById("Manager"))
+        var ManagerHead = document.getElementById("Manager");
+    if(document.getElementById("Manager1"))
+        var ManagerText = document.getElementById("Manager1");
+
     //kijk of navigation en docentNavigatio niet null is
     if(document.getElementById("navigation") != null)
         navigation = document.getElementById("navigation");
@@ -81,6 +133,22 @@ function showMails()
             docentNavigation.style.margin = "0 0 0 1.6rem";
         content.style.justifyContent = "space-between";
         panel.style.display = "none";
+        if(document.getElementById("Finances"))
+            FinancesHead.style.display = "none";        
+        if(document.getElementById("Finances1"))
+            FinancesHead.style.display = "none";        
+        if(document.getElementById("Sales"))
+            SalesHead.style.display = "none";
+        if(document.getElementById("Sales1"))
+            SalesText.style.display = "none";
+        if(document.getElementById("Development"))
+            DevelopmentHead.style.display = "none";
+        if(document.getElementById("Development1"))
+            DevelopmentText.style.display = "none";
+        if(document.getElementById("Manager"))
+            ManagerHead.style.display = "none";
+        if(document.getElementById("Manager1"))
+            ManagerText.style.display = "none";
     }
     else 
     {

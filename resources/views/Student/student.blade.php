@@ -20,6 +20,13 @@
         header("Location: /home");
         die();
     }
+    else if($_SESSION['user'] == "docent")
+    {
+        $_SESSION['feedback'] = "docenten mogen niet op de studentenPanel pagina";
+        header("Location: /docent");
+        die();
+    }
+
 ?>
 <script src="{{ URL::asset('js/planner.js') }}"></script>
 <script src="{{ URL::asset('js/mail.js') }}"></script>
@@ -49,19 +56,23 @@
             <?php 
                 if($mails != null)
                 {
+                    $i = 0;
                     foreach($mails as $mail)
                     {
                         $department = $mail['department'];
-                        $department1 = $mail['department'] . "1";
+                        $departmentHead = $mail['department'] . "Head" . $i;
+                        $departmentText = $mail['department'] . "Text" . $i;
                         if($department == "Finances")
-                            echo "<button onClick='toggleFinances(`$department`, `$department1`)'>" . $mail['department'] . "</button> \r\n";
+                            echo "<button onClick='toggleFinances(`$departmentHead`, `$departmentText`)'>" . $mail['department'] . "</button> \r\n";
                         if($department == "Sales")
-                            echo "<button onClick='toggleSales(`$department`, `$department1`)'>" . $mail['department'] . "</button> \r\n";
+                            echo "<button onClick='toggleSales(`$departmentHead`, `$departmentText`)'>" . $mail['department'] . "</button> \r\n";
                         if($department == "Development")
-                            echo "<button onClick='toggleDevelopment(`$department`, `$department1`)'>" . $mail['department'] . "</button> \r\n";
+                            echo "<button onClick='toggleDevelopment(`$departmentHead`, `$departmentText`)'>" . $mail['department'] . "</button> \r\n";
                         if($department == "Manager")
-                            echo "<button onClick='toggleManager(`$department`, `$department1`)'>" . $mail['department'] . "</button> \r\n";
+                            echo "<button onClick='toggleManager(`$departmentHead`, `$departmentText`)'>" . $mail['department'] . "</button> \r\n";
+                        $i++;
                     }
+
                 }
             ?>
         </div>
@@ -71,13 +82,15 @@
                 <?php 
                     if($mails != null)
                     {
+                        $i = 0;
                         foreach($mails as $mail)
                         {
-                            echo "<div id='" . $mail['department'] . "'>\r\n";
+                            echo "<div id='" . $mail['department'] . "Head". $i . "'>\r\n";
                                 echo "<p>afzender: " .  $mail['department'] . "</p>";
                                 echo "<p>datum: " . $mail['timeResponse'] . "</p>";
                                 echo "<p>aan: Groep " . $mail['groupNumber'] . "</p>";
                             echo "</div>";
+                            $i++;
                         }
                     }
                 ?>
@@ -87,11 +100,13 @@
                 <?php
                     if($mails != null)
                     {
+                        $i = 0;
                         foreach($mails as $mail)
                         {
-                            echo "<div id='" . $mail['department'] . "1'>\r\n";
+                            echo "<div id='" . $mail['department'] . "Text" . $i . "'>\r\n";
                                 echo "<p>" . $mail['mailResponse'] . "</p>";
                             echo "</div>";
+                            $i++;
                         }
                     } 
                 ?>
